@@ -126,7 +126,7 @@ top_tweeters <- df %>%
 
 top_tweeters
 ```
-![](top_tweeters.png)
+![](Top tweeters.png)
 
 ## Top mentions
 
