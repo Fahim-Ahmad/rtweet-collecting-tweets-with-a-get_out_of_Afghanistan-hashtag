@@ -18,8 +18,6 @@ df <- search_tweets(
   parse = TRUE
 )
 
-saveRDS(df, "df.RDS")
-saveRDS(df_users, "df_users.RDS")
 ```
 
 ## Timeline of tweets
