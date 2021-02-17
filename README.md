@@ -150,7 +150,67 @@ top_mentions <- df %>%
 
 top_mentions
 ```
-
 ![](top_mentions.png)
+
+## Proportion of tweets/retweets
+
+```
+is_retweet <- table(df$is_retweet) %>% 
+  data.frame() %>% 
+  mutate(Percent = round(Freq/sum(Freq)*100)) %>% 
+  mutate(tweet = case_when(
+    Var1 == TRUE ~ "Retweet",
+    Var1 == FALSE ~ "Tweet"
+  )) %>% 
+  ggplot(aes(x = tweet, y = Percent, fill = tweet)) +
+  geom_col() +
+  theme_bw() +
+  scale_fill_manual(values = c("Darkred", "Orange")) +
+  geom_text(aes(label = paste0(Percent, "% (n=", Freq, ")")), color = "black", vjust = -0.5) +
+  labs(x = NULL, fill = NULL, subtitle = Subtitle, caption = Caption)
+  
+is_retweet
+```
+![](is_retweet.png)
+
+## Top tweeters with their number of followers
+
+```
+top_tweeters <- df %>% 
+  group_by(is_retweet) %>% 
+  count(screen_name, sort = TRUE) %>% 
+  top_n(n = 10)
+
+
+top_tweeters_retweeters <- df_users %>% 
+  filter(df_users$screen_name %in% unique(top_tweeters$screen_name)) %>% 
+  select(screen_name, followers_count, friends_count) %>% 
+  group_by(screen_name) %>% 
+  summarize(followers_count = mean(followers_count)) %>% 
+  ungroup() %>% 
+  left_join(top_tweeters) %>% 
+  mutate(screen_name = paste0(screen_name, "\n(Number of followers = ", followers_count, ")")) %>% 
+  mutate(is_retweet = case_when(
+    is_retweet == TRUE ~ "Retweet",
+    is_retweet == FALSE ~ "Tweet",
+  )) %>% 
+  ggplot(aes(x = reorder(screen_name, n), y = n, fill = n)) +
+  geom_col() +
+  facet_wrap(~is_retweet, scales = "free_y") +
+  coord_flip() +
+  theme_bw() +
+  scale_fill_gradient(low = "orange", high = "red") +
+  labs(y = "Number of tweets", x = NULL, fill = NULL,
+       # title = "Is retweet?",
+       subtitle = Subtitle,
+       caption = Caption
+       ) +
+  theme(legend.position = "bottom", plot.title.position = "plot", legend.key.width = unit(1.5, "cm"))
+
+top_tweeters_retweeters
+
+```
+![](top_tweeters_retweeters.png)
+
 
 
