@@ -182,8 +182,8 @@ top_tweeters <- df %>%
   top_n(n = 10)
 
 
-top_tweeters_retweeters <- df_users %>% 
-  filter(df_users$screen_name %in% unique(top_tweeters$screen_name)) %>% 
+top_tweeters_retweeters <- df %>% 
+  filter(screen_name %in% unique(top_tweeters$screen_name)) %>% 
   select(screen_name, followers_count, friends_count) %>% 
   group_by(screen_name) %>% 
   summarize(followers_count = mean(followers_count)) %>% 
