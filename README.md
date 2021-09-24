@@ -1,5 +1,6 @@
 # tweets with a "get_out_of_Afghanistan" hashtag
 
+** this repo is archived **
 
 ## Loading reqired packages
 ```
