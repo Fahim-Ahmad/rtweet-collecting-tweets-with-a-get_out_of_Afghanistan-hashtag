@@ -34,11 +34,7 @@ Timeline_of_tweets <- ts_plot(df, "hours", color = "orange") +
        ) +
   theme_minimal()
 
-Timeline_of_tweets
 ```
-
-![](Timeline_of_tweets.png)
-
 
 ## Frequency of tweets, by language
 
@@ -68,10 +64,7 @@ frequency_of_tweets_by_language <- table(df$lang) %>%
        caption = Caption
   )
 
-frequency_of_tweets_by_language
 ```
-
-![](frequency_of_tweets_by_language.png)
 
 ## Top tweeting location
 
@@ -96,9 +89,7 @@ top_tweeting_location <- df %>%
       ) +
   scale_fill_ordinal(option = "D")
 
-top_tweeting_location
 ```
-![](top_tweeting_location.png)
 
 ## Top tweeters
 
@@ -123,7 +114,6 @@ top_tweeters <- df %>%
 
 top_tweeters
 ```
-![](top_tweeters.png)
 
 ## Top mentions
 
@@ -147,9 +137,7 @@ top_mentions <- df %>%
        ) +
   ylim(c(0, 300))
 
-top_mentions
 ```
-![](top_mentions.png)
 
 ## Proportion of tweets/retweets
 
@@ -168,9 +156,7 @@ is_retweet <- table(df$is_retweet) %>%
   geom_text(aes(label = paste0(Percent, "% (n=", Freq, ")")), color = "black", vjust = -0.5) +
   labs(x = NULL, fill = NULL, subtitle = Subtitle, caption = Caption)
   
-is_retweet
 ```
-![](is_retweet.png)
 
 ## Top tweeters with their number of followers
 
@@ -209,7 +195,6 @@ top_tweeters_retweeters <- df %>%
 top_tweeters_retweeters
 
 ```
-![](top_tweeters_retweeters.png)
 
 
 
