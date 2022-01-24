@@ -1,5 +1,7 @@
 # tweets with a "get_out_of_Afghanistan" hashtag
 
+The result is published here: https://tolonews.com/opinion-170035
+
 ## Loading reqired packages
 ```
 library(rtweet)
